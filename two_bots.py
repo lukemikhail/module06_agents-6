@@ -2,6 +2,7 @@
 # Author: Luke Mikhail
 
 from chatbot import SupportChatbot
+from mock_model import MockModel
 from order_tool import OrderLookup
 from stock_tool import StockLookup
 
@@ -11,11 +12,14 @@ STOCK = {"rain jacket": 12, "day pack": 0}
 order_tool = OrderLookup(ORDERS)
 stock_tool = StockLookup(STOCK)
 
+model = MockModel()
+
 sunny = SupportChatbot(
     "Sunny",
     "You are cheerful and brief.",
     order_tool,
     stock_tool,
+    model,
 )
 
 river = SupportChatbot(
@@ -23,6 +27,7 @@ river = SupportChatbot(
     "You are formal and detailed.",
     order_tool,
     stock_tool,
+    model,
 )
 
 sunny.respond("hello")

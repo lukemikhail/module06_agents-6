@@ -8,6 +8,16 @@ FAQS = {
     "products": "We sell outdoor clothing, jackets, backpacks, and hiking gear.",
 }
 
+# AI assistance disclosure:
+# AI helped generate the initial structure of this class.
+# I reviewed the code and understand that:
+# - FAQTool stores the FAQ dictionary in self.faqs.
+# - __init__ sets up the tool with the FAQ information.
+# - find_answer converts the question to lowercase.
+# - The for loop checks each FAQ topic.
+# - If a topic matches, the answer is returned.
+# - If no topic matches, None is returned.
+
 
 class FAQTool:
     """Look up answers to common store questions."""
