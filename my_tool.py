@@ -8,22 +8,20 @@ FAQS = {
     "products": "We sell outdoor clothing, jackets, backpacks, and hiking gear.",
 }
 
-# AI assistance disclosure:
-# AI helped generate the initial structure of this class.
-# I reviewed the code and understand that:
-# - FAQTool stores the FAQ dictionary in self.faqs.
-# - __init__ sets up the tool with the FAQ information.
-# - find_answer converts the question to lowercase.
-# - The for loop checks each FAQ topic.
-# - If a topic matches, the answer is returned.
-# - If no topic matches, None is returned.
-
 
 class FAQTool:
-    """Look up answers to common store questions."""
+    """Look up store information and product stock."""
 
-    def __init__(self, faqs):
+    def __init__(self, faqs, stock=None):
+        """Store the FAQ information and product stock."""
         self.faqs = faqs
+        if stock is None:
+            stock = {
+                "rain jacket": 12,
+                "day pack": 0,
+                "trail hat": 5,
+            }
+        self.stock = stock
 
     def find_answer(self, question):
         """Find an FAQ answer based on a keyword."""
@@ -32,3 +30,17 @@ class FAQTool:
             if topic in text:
                 return answer
         return None
+
+    def check_stock(self, item):
+        """Check how many of an item are available.
+
+        Args:
+            item: The product name, such as rain jacket.
+        """
+        item = item.lower().strip()
+        if item not in self.stock:
+            return f"We don't have stock information for {item}."
+        quantity = self.stock[item]
+        if quantity == 0:
+            return f"The {item} is currently out of stock."
+        return f"We have {quantity} {item}(s) in stock."
